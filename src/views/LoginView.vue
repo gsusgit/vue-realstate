@@ -1,19 +1,22 @@
 <script setup>
     import { useForm, useField } from 'vee-validate'
     import { loginSchema as validationSchema } from '@/validation/loginSchema.js'
+    import { useAuthStore } from '@/stores/auth.js'
 
+    const authStore = useAuthStore()
     const { handleSubmit } = useForm({ validationSchema })
 
     const email = useField('email')
     const password = useField('password')
 
-    const submit = handleSubmit(() => {
-      console.log('Submitting...')
+    const submit = handleSubmit(({email, password}) => {
+      authStore.login(email, password)
     })
 
 </script>
 
 <template>
+  <Alert />
   <v-card
       flat
       max-width="600"
