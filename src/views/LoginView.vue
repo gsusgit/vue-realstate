@@ -16,7 +16,6 @@
 </script>
 
 <template>
-  <Alert />
   <v-card
       flat
       max-width="600"
@@ -38,6 +37,12 @@
         @submit.prevent
         class="mt-5"
     >
+      <v-alert
+          v-if="authStore.hasError"
+          class="my-5"
+          :title="authStore.errorMsg"
+          type="error"
+      ></v-alert>
       <v-text-field
           label="Email"
           type="email"
@@ -55,7 +60,7 @@
       />
       <v-btn
           block
-          color="pink-accent-3"
+          color="blue-darken-1"
           class="mt-5"
           @click="submit"
       >
