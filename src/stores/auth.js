@@ -17,6 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 authUser.value = userCredential.user
+            // TODO Navigate to AdminPanelView
             })
             .catch((error) => {
                 errorMsg.value = errorCodes[error.message]
