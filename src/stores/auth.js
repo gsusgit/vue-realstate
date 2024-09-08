@@ -1,3 +1,4 @@
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useFirebaseAuth } from 'vuefire'
 import { signInWithEmailAndPassword } from 'firebase/auth'
@@ -5,25 +6,35 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 export const useAuthStore = defineStore('auth', () => {
 
     const auth = useFirebaseAuth()
-
+    const authUser = ref({})
+    const errorMsg = ref('')
     const errorCodes = {
-        'auth/invalid-credential': 'Contraseña incorrecta',
-        'auth/user-not-found': 'Usuario no encontrado',
-        'auth/wrong-password': 'Contraseña incorrecta'
+        'Firebase: Error (auth/invalid-credential).': 'Credenciales incorrectas',
+        'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).': 'Usuario bloqueado.'
     }
 
     const login = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential.user)
+                authUser.value = userCredential.user
             })
             .catch((error) => {
-                console.log(errorCodes[error.code])
+                errorMsg.value = errorCodes[error.message]
+                setTimeout(() => {
+                    errorMsg.value = ''
+                }, 2000)
             })
     }
 
+    const hasError = computed(() => {
+        return errorMsg.value !== ''
+    })
+
     return {
-        login
+        login,
+        hasError,
+        errorMsg,
+        authUser
     }
 
 })
