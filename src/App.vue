@@ -5,11 +5,29 @@
 </script>
 
 <template>
-  <v-container max-width="1200" class="mx-auto main-content">
-    <v-layout>
+  <div class="layout">
+    <v-layout column class="main-layout">
       <AppBar />
-      <Main />
-      <Footer />
+      <div class="main-content">
+        <Main />
+      </div>
     </v-layout>
-  </v-container>
+    <Footer />
+  </div>
 </template>
+
+<style scoped>
+  .layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .main-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .main-content {
+    flex-grow: 1;
+  }
+</style>

@@ -3,5 +3,7 @@
 </script>
 
 <template>
-  <h2 class="text-h4 my-5 font-weight-bold">Editar propiedad</h2>
+  <div class="d-flex w-100 align-center py-3">
+    <v-card-title class="text-h4 font-weight-bold px-0">Editar propiedad</v-card-title>
+  </div>
 </template>

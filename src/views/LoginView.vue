@@ -17,9 +17,8 @@
 
 <template>
   <v-card
-      flat
       max-width="450"
-      class="mx-auto my-10"
+      class="mx-auto pt-10 pb-15 px-12 my-10"
   >
     <v-card-title
         class="text-h5 font-weight-bold px-0 text-center"
@@ -46,7 +45,6 @@
       <v-text-field
           label="Email"
           type="email"
-          bg-color="grey-lighten-4"
           class="mb-3"
           v-model="email.value.value"
           :error-messages="email.errorMessage.value"
@@ -54,13 +52,12 @@
       <v-text-field
           label="Password"
           type="password"
-          bg-color="grey-lighten-4"
           v-model="password.value.value"
           :error-messages="password.errorMessage.value"
       />
       <v-btn
           block
-          color="teal-accent-4"
+          color="teal-lighten-1"
           class="mt-3 py-6 text-uppercase"
           @click="submit"
       >

@@ -5,9 +5,9 @@
 </script>
 
 <template>
-  <v-footer class="bg-teal d-flex flex-column fixed-footer">
-    <div class="bg-teal d-flex w-100 align-center px-4 py-3">
-      <strong>Vue + Firebase + Vuetify</strong>
+  <v-footer class="footer" color="teal-lighten-1">
+    <div class="footer-content">
+      <strong class="text-white">Vue + Firebase + Vuetify</strong>
       <v-spacer></v-spacer>
       <v-btn
           class="me-2 text-none"
@@ -22,11 +22,21 @@
 </template>
 
 <style scoped>
-  .fixed-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10;
+  .footer {
+    width: 100vw;
+    max-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    width: 100%;
   }
 </style>

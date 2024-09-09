@@ -1,7 +1,7 @@
 <script setup>
-import { useAuthStore } from '@/stores/auth.js'
+  import { useAuthStore } from '@/stores/auth.js'
 
-const auth = useAuthStore()
+  const auth = useAuthStore()
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const auth = useAuthStore()
     </template>
     <template v-slot:append>
       <div v-if="auth.isAuthenticated">
-        <v-btn :to="{name: 'admin-propiedades'}">Admin Panel</v-btn>
+        <v-btn :to="{name: 'admin-propiedades'}">Propiedades</v-btn>
         <v-btn :to="{name: 'login'}" @click="auth.logOut()">Cerrar sesión</v-btn>
       </div>
       <div v-else>
