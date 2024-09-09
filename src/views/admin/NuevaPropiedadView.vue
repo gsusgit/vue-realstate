@@ -33,7 +33,7 @@ const piscina = useField('piscina', null, {
 })
 
 const db = useFirestore()
-const router = useRouter()  // Mueve esto aquí para que esté disponible en todo el componente
+const router = useRouter()
 
 const submit = handleSubmit(async (values) => {
   loading.value = true
