@@ -26,7 +26,7 @@ const router = createRouter({
         {
           path: '/admin/propiedades',
           name: 'propiedades',
-          component: () => import('../views/admin/PropiedadesView.vue')
+          component: () => import('../views/admin/ListadoPropiedadesView.vue')
         },
         {
           path: '/admin/nueva',
