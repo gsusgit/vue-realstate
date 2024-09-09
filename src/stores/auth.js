@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 authUser.value = userCredential.user
-                router.push({name: 'admin-propiedades'})
+                router.push({name: 'propiedades'})
             })
             .catch((error) => {
                 errorMsg.value = errorCodes[error.message]

@@ -68,7 +68,7 @@ const submit = handleSubmit(async (values) => {
       alert.value.show = false
       loading.value = false
       if (docRef.id) {
-        router.push({ name: 'admin-propiedades' })  // Usa router aquí
+        router.push({ name: 'propiedades' })  // Usa router aquí
       }
     }, 1500)
   } catch (error) {

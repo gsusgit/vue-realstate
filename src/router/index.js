@@ -20,12 +20,13 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: () => import('../views/admin/AdminLayout.vue'),
+      redirect: '/admin/propiedades',
       meta: { requiresAuth: true },
       children: [
         {
-          path: '/admin-propiedades',
-          name: 'admin-propiedades',
-          component: () => import('../views/admin/AdminView.vue')
+          path: '/admin/propiedades',
+          name: 'propiedades',
+          component: () => import('../views/admin/PropiedadesView.vue')
         },
         {
           path: '/admin/nueva',
