@@ -23,7 +23,7 @@ const router = createRouter({
       meta: { requiresAuth: true },
       children: [
         {
-          path: '/admin/propiedades',
+          path: '/admin-propiedades',
           name: 'admin-propiedades',
           component: () => import('../views/admin/AdminView.vue')
         },
