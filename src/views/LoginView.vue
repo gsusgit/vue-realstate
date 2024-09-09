@@ -46,7 +46,7 @@
       <v-text-field
           label="Email"
           type="email"
-          bg-color="teal-lighten-5"
+          bg-color="grey-lighten-4"
           class="mb-3"
           v-model="email.value.value"
           :error-messages="email.errorMessage.value"
@@ -54,7 +54,7 @@
       <v-text-field
           label="Password"
           type="password"
-          bg-color="teal-lighten-5"
+          bg-color="grey-lighten-4"
           v-model="password.value.value"
           :error-messages="password.errorMessage.value"
       />
