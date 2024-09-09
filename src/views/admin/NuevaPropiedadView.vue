@@ -6,6 +6,9 @@ import { collection, addDoc } from 'firebase/firestore'
 import { useFirestore } from 'vuefire'
 import { validationSchema, imageSchema } from '@/validation/propiedadSchema.js'
 import useImage from '@/composables/useImage.js'
+import useMap from '@/composables/useMap.js'
+import "leaflet/dist/leaflet.css"
+import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
 
 const items = [1, 2, 3, 4, 5]
 const loading = ref(false)
@@ -20,6 +23,11 @@ const {
     imageUploaded,
     url
 } = useImage()
+
+const {
+    center,
+    setMarker
+} = useMap()
 
 const { handleSubmit } = useForm({
   validationSchema: {
@@ -48,7 +56,8 @@ const submit = handleSubmit(async (values) => {
   try {
     const docRef = await addDoc(collection(db, 'propiedades'), {
       ...propiedad,
-      imagen: url.value
+      imagen: url.value,
+      marker: center.value
     })
     alert.value = {
       show: true,
@@ -110,7 +119,6 @@ const submit = handleSubmit(async (values) => {
               class="w-50"
           />
         </div>
-
         <v-text-field
             label='Precio'
             class='mb-3'
@@ -155,9 +163,25 @@ const submit = handleSubmit(async (values) => {
         />
         <v-checkbox
             label='Piscina'
-            class='mb-3'
             v-model='piscina.value.value'
         />
+        <p class="font-weight-bold mb-5">Ubicación: </p>
+        <div class="mb-10 w-50" style="height:400px; width:100%">
+          <l-map
+              :zoom="16"
+              :center="[center[0], center[1]]"
+              :use-global-leaflet="false"
+          >
+            <l-tile-layer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <LMarker
+                :lat-lng="center"
+                draggable="draggable"
+                @moveend="setMarker($event)"
+            />
+          </l-map>
+        </div>
         <v-alert
             v-if="alert.show"
             class="my-5"
