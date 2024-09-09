@@ -36,6 +36,11 @@ const router = createRouter({
           path: '/admin/editar/:id',
           name: 'editar-propiedad',
           component: () => import('../views/admin/EditarPropiedadView.vue')
+        },
+        {
+          path: '/:pathMatch(.*)*',
+          name: 'not-found',
+          component: () => import('../views/NotFoundView.vue')
         }
       ]
     }

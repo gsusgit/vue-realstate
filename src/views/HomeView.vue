@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <h1 class="text-center text-h3 font-weight-bold my-5">Vue Real State</h1>
+  <h1 class="text-center text-h4 font-weight-bold my-5">Vue Real State</h1>
 </template>
