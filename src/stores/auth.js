@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('auth', () => {
             router.push({name: 'login'})
         }).catch((error) => {
             console.log(error)
-        });
+        })
     }
 
     const isAuthenticated = computed(() => {
