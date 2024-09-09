@@ -7,7 +7,7 @@
 <template>
   <v-footer class="footer" color="teal-lighten-1">
     <div class="footer-content">
-      <strong class="text-white">Vue + Firebase + Vuetify</strong>
+      <strong class="text-white">Vue + Pinia + Firebase + Vuetify + Vee Validate</strong>
       <v-spacer></v-spacer>
       <v-btn
           class="me-2 text-none"
