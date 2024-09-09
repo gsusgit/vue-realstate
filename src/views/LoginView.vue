@@ -10,7 +10,7 @@
     const password = useField('password')
 
     const submit = handleSubmit(({email, password}) => {
-      authStore.login(email, password)
+      authStore.logIn(email, password)
     })
 
 </script>
