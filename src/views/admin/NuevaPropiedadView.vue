@@ -5,6 +5,7 @@ import { useForm, useField } from 'vee-validate'
 import { collection, addDoc } from 'firebase/firestore'
 import { useFirestore } from 'vuefire'
 import { validationSchema, imageSchema } from '@/validation/propiedadSchema.js'
+import useImage from '@/composables/useImage.js'
 
 const items = [1, 2, 3, 4, 5]
 const loading = ref(false)
@@ -13,6 +14,12 @@ const alert = ref({
   title: '',
   type: '',
 })
+
+const {
+    uploadImage,
+    imageUploaded,
+    url
+} = useImage()
 
 const { handleSubmit } = useForm({
   validationSchema: {
@@ -40,7 +47,8 @@ const submit = handleSubmit(async (values) => {
   const { imagen, ...propiedad } = values
   try {
     const docRef = await addDoc(collection(db, 'propiedades'), {
-      ...propiedad
+      ...propiedad,
+      imagen: url.value
     })
     alert.value = {
       show: true,
@@ -61,8 +69,8 @@ const submit = handleSubmit(async (values) => {
       type: 'error'
     }
     setTimeout(() => {
-      alert.value.show = false
       loading.value = false
+      alert.value.show = false
     }, 1500)
   }
 })
@@ -77,12 +85,6 @@ const submit = handleSubmit(async (values) => {
           @submit.prevent
           class='mt-10'
       >
-        <v-alert
-            v-if="alert.show"
-            class="my-5"
-            :title="alert.title"
-            :type="alert.type"
-        ></v-alert>
         <v-text-field
             label='Título'
             class='mb-3'
@@ -96,7 +98,19 @@ const submit = handleSubmit(async (values) => {
             class='mb-3'
             v-model='imagen.value.value'
             :error-messages='imagen.errorMessage.value'
+            @change="uploadImage($event)"
         />
+        <div
+            v-if="imageUploaded"
+            class="mb-5"
+        >
+          <p class="font-weight-bold mb-2">Imagen de propìedad: </p>
+          <v-img
+              :src="imageUploaded"
+              class="w-50"
+          />
+        </div>
+
         <v-text-field
             label='Precio'
             class='mb-3'
@@ -144,14 +158,18 @@ const submit = handleSubmit(async (values) => {
             class='mb-3'
             v-model='piscina.value.value'
         />
+        <v-alert
+            v-if="alert.show"
+            class="my-5"
+            :title="alert.title"
+            :type="alert.type"
+        ></v-alert>
         <v-btn
-            :loading="loading"
             :disabled="loading"
             color='teal-lighten-1'
             class='text-uppercase'
             @click='submit'
         >
-          <v-icon v-if="loading">mdi-loading</v-icon>
           <span>{{ loading ? 'Añadiendo...' : 'Añadir propiedad' }}</span>
         </v-btn>
       </v-form>
