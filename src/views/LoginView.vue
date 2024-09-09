@@ -18,17 +18,17 @@
 <template>
   <v-card
       flat
-      max-width="600"
+      max-width="450"
       class="mx-auto my-10"
   >
     <v-card-title
-        class="text-h5 font-weight-bold"
+        class="text-h5 font-weight-bold px-0 text-center"
         tag="h5"
     >
       Iniciar sesión
     </v-card-title>
     <v-card-subtitle
-        class="text-h6"
+        class="text-h6 px-0 text-center"
         tag="h6"
     >
       Introduce tus credenciales de acceso
@@ -46,7 +46,7 @@
       <v-text-field
           label="Email"
           type="email"
-          bg-color="blue-grey-lighten-5"
+          bg-color="teal-lighten-5"
           class="mb-3"
           v-model="email.value.value"
           :error-messages="email.errorMessage.value"
@@ -54,14 +54,14 @@
       <v-text-field
           label="Password"
           type="password"
-          bg-color="blue-grey-lighten-5"
+          bg-color="teal-lighten-5"
           v-model="password.value.value"
           :error-messages="password.errorMessage.value"
       />
       <v-btn
           block
-          color="blue-darken-1"
-          class="mt-5"
+          color="teal-accent-4"
+          class="mt-3 py-6 text-uppercase"
           @click="submit"
       >
         Iniciar sesión

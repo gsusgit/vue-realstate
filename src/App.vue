@@ -10,9 +10,12 @@
       class="mx-auto"
   >
     <v-layout>
-      <v-app-bar color="blue-darken-1">
+      <v-app-bar color="grey-darken-4">
         <template v-slot:prepend>
-          <v-btn :to="{name: 'home'}">Vue - Real State</v-btn>
+          <v-btn :to="{name: 'home'}">
+            <img src="../src/assets/logo.svg" height="24" alt="Vue Logo" class="mr-2" />
+            <span>REAL STATE</span>
+          </v-btn>
         </template>
         <template v-slot:append>
           <div v-if="auth.isAuthenticated">
