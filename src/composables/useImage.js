@@ -33,9 +33,14 @@ export default function useImage() {
         return url.value ? url.value : null
     })
 
+    const image = computed(() => {
+        return url.value ? url.value : null
+    })
+
     return {
         uploadImage,
         imageUploaded,
-        url
+        url,
+        image
     }
 }
