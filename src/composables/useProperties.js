@@ -1,11 +1,11 @@
 import { computed } from 'vue'
-import { collection } from 'firebase/firestore'
-import { useCollection, useFirestore } from 'vuefire'
+import { collection, doc } from 'firebase/firestore'
+import { useCollection, useDocument, useFirestore } from 'vuefire'
 
 export const useProperties = () => {
 
     const db = useFirestore()
-    const properties = useCollection(collection(db, "propiedades"))
+    const properties = useCollection(collection(db, 'propiedades'))
     
     const formatPrice = computed(() => {
         return (price) =>
@@ -14,9 +14,15 @@ export const useProperties = () => {
                 currency: 'EUR'
             })
     })
+    
+    function getPropertyData(id) {
+        const docRef = doc(db, 'propiedades', id)
+        return useDocument(docRef)
+    }
 
     return {
         properties,
-        formatPrice
+        formatPrice,
+        getPropertyData
     }
 }

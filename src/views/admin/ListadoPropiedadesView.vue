@@ -64,6 +64,7 @@
                 color="teal"
                 variant="outlined"
                 class="custom-btn edit mr-2"
+                :to="{name: 'editar-propiedad', params: {id: property.id}}"
             >Editar</v-btn>
             <v-btn
                 color="red"

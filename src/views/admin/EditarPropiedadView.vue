@@ -1,5 +1,20 @@
 <script setup>
+  import { ref, watch } from 'vue'
+  import { useRoute } from 'vue-router'
+  import { useProperties } from '@/composables/useProperties.js'
 
+  const { getPropertyData } = useProperties()
+
+  const property = ref(null)
+  const route = useRoute()
+
+  const propertyData = getPropertyData(route.params.id)
+
+  watch(propertyData, (newVal) => {
+    if (newVal) {
+      property.value = newVal
+    }
+  })
 </script>
 
 <template>
