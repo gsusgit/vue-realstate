@@ -26,7 +26,6 @@ const items = [1, 2, 3, 4, 5]
 const {
   url,
   uploadImage,
-  imageUploaded,
   image
 } = useImage()
 const {
