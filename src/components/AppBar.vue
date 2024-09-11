@@ -17,11 +17,11 @@
   </template>
     <template v-slot:append>
       <div v-if="auth.isAuthenticated">
-        <v-btn :to="{name: 'propiedades'}">Propiedades</v-btn>
+        <v-btn :to="{name: 'propiedades'}">Administrar Propiedades</v-btn>
         <v-btn :to="{name: 'login'}" @click="auth.logOut()">Cerrar sesión</v-btn>
       </div>
       <div v-else>
-        <v-btn :to="{name: 'home'}">Propiedades</v-btn>
+        <v-btn :to="{name: 'home'}">Ver propiedades</v-btn>
         <v-btn :to="{name: 'login'}">Iniciar sesión</v-btn>
       </div>
     </template>
