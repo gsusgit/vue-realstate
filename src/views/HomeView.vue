@@ -1,5 +1,15 @@
 <script setup>
   import { useProperties } from '@/composables/useProperties.js'
+  import Preloader from '@/components/Preloader.vue'
+  import { onMounted, ref } from 'vue'
+
+  const preloader = ref(true)
+
+  onMounted(() => {
+    setTimeout(() => {
+      preloader.value = false
+    }, 1000)
+  })
 
   const {
       formatPrice,
@@ -9,53 +19,57 @@
 </script>
 
 <template>
-  <v-container class="pa-0 hero-container" fluid>
-    <v-sheet
-        height="450"
-        class="d-flex align-center justify-center hero"
-    >
+  <Preloader v-if="preloader"/>
+  <div v-else>
+    <v-container class="pa-0 hero-container" fluid>
+      <v-sheet
+          height="450"
+          class="d-flex align-center justify-center hero"
+      >
+        <v-row>
+          <v-col>
+            <h1 class="text-h2 font-weight-bold text-center text-white mb-4">Vue Real State</h1>
+            <p class="text-h4 font-weight-light text-center text-white">Transformando el futuro del Hogar Inteligente</p>
+          </v-col>
+        </v-row>
+      </v-sheet>
+    </v-container>
+    <v-container class='container-3 property-listing mb-15'>
+      <v-card-title class="text-h4 font-weight-bold px-0 text-center mt-10 mb-5">Últimas propiedades</v-card-title>
+      <v-checkbox
+          label="Mostrar propiedades con piscina"
+          class="custom-label"
+          v-model="pool"
+      />
       <v-row>
-        <v-col>
-          <h1 class="text-h2 font-weight-bold text-center text-white mb-4">Vue Real State</h1>
-          <p class="text-h4 font-weight-light text-center text-white">Transformando el futuro del Hogar Inteligente</p>
+        <v-col v-for="property in propertiesCollection" :key="property.id" cols='12' sm='4'>
+          <v-card class="mx-auto card-height" color="transparent">
+            <v-img
+                :src="property.imagen"
+                height="300px"
+                class="overlay-container"
+            >
+              <div class="overlay"></div>
+              <v-card-title class="text-h5 font-weight-bold">{{ property.titulo }}</v-card-title>
+              <v-card-subtitle class="text-h5 font-weight-medium text-white">{{ formatPrice(property.precio) }}</v-card-subtitle>
+            </v-img>
+            <template v-slot:actions>
+              <v-btn
+                  append-icon="mdi-chevron-right"
+                  class="property-info"
+                  color="teal-lighten-2"
+                  text="Ver propiedad"
+                  variant="outlined"
+                  block
+                  :to="{name: 'propiedad', params: {id: property.id}}"
+              ></v-btn>
+            </template>
+          </v-card>
         </v-col>
       </v-row>
-    </v-sheet>
-  </v-container>
-  <v-container class='container-3 property-listing mb-15'>
-    <v-card-title class="text-h4 font-weight-bold px-0 text-center mt-10 mb-5">Últimas propiedades</v-card-title>
-    <v-checkbox
-        label="Mostrar propiedades con piscina"
-        class="custom-label"
-        v-model="pool"
-    />
-    <v-row>
-      <v-col v-for="property in propertiesCollection" :key="property.id" cols='12' sm='4'>
-        <v-card class="mx-auto card-height" color="transparent">
-          <v-img
-              :src="property.imagen"
-              height="300px"
-              class="overlay-container"
-          >
-            <div class="overlay"></div>
-            <v-card-title class="text-h5 font-weight-bold">{{ property.titulo }}</v-card-title>
-            <v-card-subtitle class="text-h5 font-weight-medium text-white">{{ formatPrice(property.precio) }}</v-card-subtitle>
-          </v-img>
-          <template v-slot:actions>
-            <v-btn
-                append-icon="mdi-chevron-right"
-                class="property-info"
-                color="teal-lighten-2"
-                text="Ver propiedad"
-                variant="outlined"
-                block
-                :to="{name: 'propiedad', params: {id: property.id}}"
-            ></v-btn>
-          </template>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+    </v-container>
+  </div>
+
 </template>
 
 <style scoped>

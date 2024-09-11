@@ -1,5 +1,5 @@
 <script setup>
-import { watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useFirestore, useDocument } from 'vuefire'
 import { doc } from 'firebase/firestore'
@@ -11,6 +11,15 @@ import {
 } from "@vue-leaflet/vue-leaflet";
 import useLocationMap from '@/composables/useLocationMap'
 import { useProperties } from '@/composables/useProperties.js'
+import Preloader from '@/components/Preloader.vue'
+
+const preloader = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    preloader.value = false
+  }, 1000)
+})
 
 const {
   formatPrice
@@ -37,7 +46,8 @@ watch(propiedad, (propiedad) => {
 </script>
 
 <template>
-  <v-container class='container-3 property-listing mt-10 mb-15'>
+  <Preloader v-if="preloader"/>
+  <v-container v-else class='container-3 property-listing mt-10 mb-15'>
     <v-card-title class='text-h4 font-weight-bold mb-4'>{{propiedad?.titulo}}</v-card-title>
     <v-card-item>
       <img

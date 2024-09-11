@@ -2,6 +2,16 @@
     import { useForm, useField } from 'vee-validate'
     import { loginSchema as validationSchema } from '@/validation/loginSchema.js'
     import { useAuthStore } from '@/stores/auth.js'
+    import { onMounted, ref } from 'vue'
+    import Preloader from '@/components/Preloader.vue'
+
+    const preloader = ref(true)
+
+    onMounted(() => {
+      setTimeout(() => {
+        preloader.value = false
+      }, 1000)
+    })
 
     const authStore = useAuthStore()
     const { handleSubmit } = useForm({ validationSchema })
@@ -16,7 +26,8 @@
 </script>
 
 <template>
-  <v-card
+  <Preloader v-if="preloader"/>
+  <v-card v-else
       max-width="450"
       class="mx-auto pt-10 pb-15 px-12 my-10"
   >

@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useForm, useField } from 'vee-validate'
 import { collection, addDoc } from 'firebase/firestore'
@@ -9,6 +8,16 @@ import useImage from '@/composables/useImage.js'
 import useMap from '@/composables/useMap.js'
 import "leaflet/dist/leaflet.css"
 import { LMap, LTileLayer, LMarker } from "@vue-leaflet/vue-leaflet"
+import { onMounted, ref } from 'vue'
+import Preloader from '@/components/Preloader.vue'
+
+const preloader = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    preloader.value = false
+  }, 1000)
+})
 
 const items = [1, 2, 3, 4, 5]
 const loading = ref(false)
@@ -68,7 +77,7 @@ const submit = handleSubmit(async (values) => {
       alert.value.show = false
       loading.value = false
       if (docRef.id) {
-        router.push({ name: 'propiedades' })  // Usa router aquí
+        router.push({ name: 'propiedades' })
       }
     }, 1500)
   } catch (error) {
@@ -87,7 +96,8 @@ const submit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <div class='px-4 pt-3'>
+  <Preloader v-if="preloader"/>
+  <div v-else class='px-4 pt-3'>
     <v-card-title class='text-h5 font-weight-bold px-0'>Nueva propiedad</v-card-title>
     <v-card class='mt-3 mb-10 pb-10 px-10'>
       <v-form

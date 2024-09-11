@@ -13,6 +13,16 @@ import {
 import useImage from '@/composables/useImage'
 import useLocationMap from '@/composables/useLocationMap'
 import { validationSchema } from '@/validation/propiedadSchema'
+import { onMounted } from 'vue'
+import Preloader from '@/components/Preloader.vue'
+
+const preloader = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    preloader.value = false
+  }, 1000)
+})
 
 const alert = ref({
   show: false,
@@ -139,7 +149,8 @@ const submit = handleSubmit(async values => {
 </script>
 
 <template>
-  <div class='px-4 pt-3'>
+  <Preloader v-if="preloader"/>
+  <div v-else class='px-4 pt-3'>
     <v-card-title class='text-h5 font-weight-bold px-0'>Editar propiedad</v-card-title>
     <v-card class='mt-3 mb-10 pb-10 px-10'>
       <v-form
