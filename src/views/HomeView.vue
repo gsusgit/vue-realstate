@@ -25,7 +25,7 @@
     <v-card-title class="text-h4 font-weight-bold px-0 text-center mt-10 mb-5">Últimas propiedades</v-card-title>
     <v-row>
       <v-col v-for="property in properties" :key="property.id" cols='12' sm='4'>
-        <v-card class="mx-auto card-height" color="surface-variant">
+        <v-card class="mx-auto card-height" color="transparent">
           <v-img
               :src="property.imagen"
               height="300px"
@@ -38,8 +38,9 @@
           <template v-slot:actions>
             <v-btn
                 append-icon="mdi-chevron-right"
+                class="property-info"
                 color="teal-lighten-2"
-                text="Más información"
+                text="Ver propiedad"
                 variant="outlined"
                 block
             ></v-btn>
@@ -76,5 +77,11 @@
   .overlay-container .v-card-subtitle {
     position: relative;
     z-index: 2;
+    color: white;
+  }
+  .property-info:hover {
+    background: teal;
+    color: white !important;
+    border-color: teal;
   }
 </style>
