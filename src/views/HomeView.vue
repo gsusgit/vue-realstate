@@ -2,8 +2,9 @@
   import { useProperties } from '@/composables/useProperties.js'
 
   const {
-      properties,
-      formatPrice
+      formatPrice,
+      propertiesCollection,
+      pool
   } = useProperties()
 </script>
 
@@ -23,8 +24,13 @@
   </v-container>
   <v-container class='container-3 property-listing mb-15'>
     <v-card-title class="text-h4 font-weight-bold px-0 text-center mt-10 mb-5">Últimas propiedades</v-card-title>
+    <v-checkbox
+        label="Mostrar propiedades con piscina"
+        class="custom-label"
+        v-model="pool"
+    />
     <v-row>
-      <v-col v-for="property in properties" :key="property.id" cols='12' sm='4'>
+      <v-col v-for="property in propertiesCollection" :key="property.id" cols='12' sm='4'>
         <v-card class="mx-auto card-height" color="transparent">
           <v-img
               :src="property.imagen"
