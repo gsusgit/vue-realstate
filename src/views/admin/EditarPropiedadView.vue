@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useFirestore, useDocument } from 'vuefire'
-import { addDoc, collection, doc, updateDoc } from 'firebase/firestore'
+import { doc, updateDoc } from 'firebase/firestore'
 import { useField, useForm } from 'vee-validate'
 import "leaflet/dist/leaflet.css";
 import {
@@ -47,7 +47,6 @@ const piscina = useField('piscina')
 const route = useRoute()
 const router = useRouter()
 
-// Obtener la Propiedad a editar
 const db = useFirestore()
 const docRef = doc(db, 'propiedades', route.params.id)
 const propiedad = useDocument(docRef)
@@ -86,7 +85,7 @@ const submit = handleSubmit(async values => {
         alert.value.show = false
         loading.value = false
         if (docRef.id) {
-          router.push({ name: 'propiedades' })  // Usa router aquí
+          router.push({ name: 'propiedades' })
         }
       }, 1500)
     } catch (error) {
@@ -116,7 +115,7 @@ const submit = handleSubmit(async values => {
         alert.value.show = false
         loading.value = false
         if (docRef.id) {
-          router.push({ name: 'propiedades' })  // Usa router aquí
+          router.push({ name: 'propiedades' })
         }
       }, 1500)
     } catch (error) {
