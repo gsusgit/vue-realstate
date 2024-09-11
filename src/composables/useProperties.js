@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { collection } from 'firebase/firestore'
+import { collection, doc, deleteDoc } from 'firebase/firestore'
 import { useCollection, useFirestore } from 'vuefire'
 
 export const useProperties = () => {
@@ -22,10 +22,16 @@ export const useProperties = () => {
         return pool.value ? properties.value.filter(property => property.piscina) : properties.value
     })
 
+    const removeProperty = async (id) => {
+        const docRef = doc(db, 'propiedades', id)
+        await deleteDoc(docRef)
+    }
+
     return {
         properties,
         formatPrice,
         propertiesCollection,
-        pool
+        pool,
+        removeProperty
     }
 }

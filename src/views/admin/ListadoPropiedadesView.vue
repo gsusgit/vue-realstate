@@ -1,13 +1,53 @@
 <script setup>
   import { useProperties } from '@/composables/useProperties.js'
+  import { ref } from 'vue'
 
   const {
       properties,
-      formatPrice
+      formatPrice,
+      removeProperty
   } = useProperties()
+
+  const showDialog = ref(false)
+  const propertyToDelete = ref(null)
+
+  const confirmDelete = (id) => {
+    propertyToDelete.value = id
+    showDialog.value = true
+  }
+
+  const acceptDelete = () => {
+    if (propertyToDelete.value) {
+      removeProperty(propertyToDelete.value)
+    }
+    showDialog.value = false
+  }
 </script>
 
 <template>
+  <v-dialog v-model="showDialog" max-width="500">
+    <template v-slot:default="{ isActive }">
+      <v-card title="Borrar propiedad">
+        <v-card-text>
+          La propiedad será eliminada, ¿Estás seguro?
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+              variant="tonal"
+              text="Cancelar"
+              @click="showDialog = false"
+          ></v-btn>
+          <v-btn
+              color="red"
+              variant="flat"
+              text="Aceptar"
+              @click="acceptDelete"
+          ></v-btn>
+        </v-card-actions>
+      </v-card>
+    </template>
+  </v-dialog>
   <div class="d-flex w-100 align-center px-4 py-3">
     <v-card-title class="text-h5 font-weight-bold px-0">Listado de propiedades</v-card-title>
     <v-spacer></v-spacer>
@@ -70,6 +110,7 @@
                 color="red"
                 variant="outlined"
                 class="custom-btn remove"
+                @click="confirmDelete(property.id)"
             >Eliminar</v-btn>
           </template>
         </v-list-item>
