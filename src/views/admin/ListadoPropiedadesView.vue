@@ -10,15 +10,17 @@
 
   const showDialog = ref(false)
   const propertyToDelete = ref(null)
+  const imageToDelete = ref('')
 
-  const confirmDelete = (id) => {
+  const confirmDelete = (id, imageUrl) => {
     propertyToDelete.value = id
+    imageToDelete.value = imageUrl
     showDialog.value = true
   }
 
   const acceptDelete = () => {
     if (propertyToDelete.value) {
-      removeProperty(propertyToDelete.value)
+      removeProperty(propertyToDelete.value, imageToDelete.value)
     }
     showDialog.value = false
   }
@@ -110,7 +112,7 @@
                 color="red"
                 variant="outlined"
                 class="custom-btn remove"
-                @click="confirmDelete(property.id)"
+                @click="confirmDelete(property.id, property.imagen)"
             >Eliminar</v-btn>
           </template>
         </v-list-item>
