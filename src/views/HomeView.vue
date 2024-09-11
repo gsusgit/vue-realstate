@@ -43,6 +43,7 @@
                 text="Ver propiedad"
                 variant="outlined"
                 block
+                :to="{name: 'propiedad', params: {id: property.id}}"
             ></v-btn>
           </template>
         </v-card>
