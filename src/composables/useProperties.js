@@ -14,15 +14,9 @@ export const useProperties = () => {
                 currency: 'EUR'
             })
     })
-    
-    function getPropertyData(id) {
-        const docRef = doc(db, 'propiedades', id)
-        return useDocument(docRef)
-    }
 
     return {
         properties,
-        formatPrice,
-        getPropertyData
+        formatPrice
     }
 }
