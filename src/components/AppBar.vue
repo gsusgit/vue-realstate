@@ -1,6 +1,5 @@
 <script setup>
   import { useAuthStore } from '@/stores/auth.js'
-  import { useRoute } from 'vue-router'
 
   const auth = useAuthStore()
 </script>

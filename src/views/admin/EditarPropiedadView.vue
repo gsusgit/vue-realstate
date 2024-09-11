@@ -52,14 +52,18 @@ const docRef = doc(db, 'propiedades', route.params.id)
 const propiedad = useDocument(docRef)
 
 watch(propiedad, (propiedad) => {
-  titulo.value.value = propiedad.titulo
-  precio.value.value = propiedad.precio
-  habitaciones.value.value = propiedad.habitaciones
-  aseos.value.value = propiedad.aseos
-  aparcamientos.value.value = propiedad.aparcamientos
-  descripcion.value.value = propiedad.descripcion
-  piscina.value.value = propiedad.piscina
-  center.value = propiedad.marker
+  if (propiedad) {
+    titulo.value.value = propiedad.titulo
+    precio.value.value = propiedad.precio
+    habitaciones.value.value = propiedad.habitaciones
+    aseos.value.value = propiedad.aseos
+    aparcamientos.value.value = propiedad.aparcamientos
+    descripcion.value.value = propiedad.descripcion
+    piscina.value.value = propiedad.piscina
+    center.value = propiedad.marker
+  } else {
+    router.push({ name: 'not-found' })
+  }
 })
 
 const submit = handleSubmit(async values => {

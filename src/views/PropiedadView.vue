@@ -21,12 +21,18 @@ const {
   center
 } = useLocationMap()
 
-
+const router = useRouter()
 const route = useRoute()
 
 const db = useFirestore()
 const docRef = doc(db, 'propiedades', route.params.id)
 const propiedad = useDocument(docRef)
+
+watch(propiedad, (propiedad) => {
+  if (!propiedad) {
+    router.push({ name: 'not-found' })
+  }
+})
 
 </script>
 

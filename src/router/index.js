@@ -22,31 +22,30 @@ const router = createRouter({
       component: () => import('../views/LoginView.vue')
     },
     {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/NotFoundView.vue')
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: () => import('../views/admin/AdminLayout.vue'),
-      redirect: '/admin/propiedades',
       meta: { requiresAuth: true },
       children: [
         {
-          path: '/admin/propiedades',
+          path: '/propiedades',
           name: 'propiedades',
           component: () => import('../views/admin/ListadoPropiedadesView.vue')
         },
         {
-          path: '/admin/nueva',
+          path: '/nueva-propiedad',
           name: 'nueva-propiedad',
           component: () => import('../views/admin/NuevaPropiedadView.vue')
         },
         {
-          path: '/admin/editar/:id',
+          path: '/editar-propiedad/:id',
           name: 'editar-propiedad',
           component: () => import('../views/admin/EditarPropiedadView.vue')
-        },
-        {
-          path: '/:pathMatch(.*)*',
-          name: 'not-found',
-          component: () => import('../views/NotFoundView.vue')
         }
       ]
     }
@@ -56,16 +55,14 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(url => url.meta.requiresAuth)
   if (requiresAuth) {
-    // Check if user is authenticated
     try {
       await authenticateUser()
       next()
     } catch (error) {
-      console.log(error)
-      next({name: 'login'})
+      console.log('Error de autenticación:', error)
+      next({ name: 'login' })
     }
   } else {
-    // Non protected routes
     next()
   }
 })
