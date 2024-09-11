@@ -17,6 +17,12 @@
       removeProperty
   } = useProperties()
 
+  const alert = ref({
+    show: false,
+    title: 'Propiedad eliminada con éxito.',
+    type: 'success'
+  })
+
   const showDialog = ref(false)
   const propertyToDelete = ref(null)
   const imageToDelete = ref('')
@@ -32,6 +38,10 @@
       removeProperty(propertyToDelete.value, imageToDelete.value)
     }
     showDialog.value = false
+    alert.value.show = true
+    setTimeout(() => {
+      alert.value.show = false
+    }, 1500)
   }
 </script>
 
@@ -68,6 +78,12 @@
     </div>
     <div class="w-100 px-4 py-5">
       <div class="mx-auto">
+        <v-alert
+            v-if="alert.show"
+            class="my-5"
+            :title="alert.title"
+            :type="alert.type"
+        ></v-alert>
         <v-list
             v-if="properties.length > 0"
             class="custom-list"
