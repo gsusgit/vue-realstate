@@ -71,7 +71,7 @@ const propiedad = useDocument(docRef)
             <v-card-text><v-icon class="me-2">mdi-bed-outline</v-icon><strong>{{propiedad?.habitaciones}}</strong> habitaciones</v-card-text>
             <v-card-text><v-icon class="me-2">mdi-toilet</v-icon> <strong>{{propiedad?.aseos}}</strong> aseos</v-card-text>
             <v-card-text><v-icon class="me-2">mdi-car-outline</v-icon><strong>{{propiedad?.aparcamientos}}</strong> plazas de garaje</v-card-text>
-            <v-card-text v-if="propiedad.piscina"><v-icon class="me-2">mdi-pool</v-icon> Con piscina</v-card-text>
+            <v-card-text v-if="propiedad?.piscina"><v-icon class="me-2">mdi-pool</v-icon> Con piscina</v-card-text>
             <v-card-text class="text-h5 mt-5"><span class="font-weight-black">{{ formatPrice(propiedad?.precio) }}</span></v-card-text>
           </v-col>
         </v-row>
