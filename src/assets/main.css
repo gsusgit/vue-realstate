@@ -17,6 +17,12 @@ body {
         margin-right: auto;
         margin-left: auto;
     }
+    .admin-container {
+        max-width: 1280px !important;
+        padding: 16px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 
 .v-img__img--contain {
@@ -27,6 +33,7 @@ body {
     max-width: 1280px;
     margin: 0 auto;
     width: 100%;
+    padding: 16px;
 }
 
 .property-listing .v-card-actions {

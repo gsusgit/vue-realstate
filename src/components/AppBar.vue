@@ -22,6 +22,7 @@
         <v-btn :to="{name: 'login'}" @click="auth.logOut()">Cerrar sesión</v-btn>
       </div>
       <div v-else>
+        <v-btn :to="{name: 'home'}">Propiedades</v-btn>
         <v-btn :to="{name: 'login'}">Iniciar sesión</v-btn>
       </div>
     </template>
