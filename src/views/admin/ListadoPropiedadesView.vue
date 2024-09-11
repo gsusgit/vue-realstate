@@ -80,21 +80,26 @@
           <v-list-item-title class="text-h6 text-teal font-weight-medium">{{formatPrice(property.precio)}}</v-list-item-title>
           <v-container class='container-3'>
             <v-row>
-              <v-col cols='12' sm='6'>
+              <v-col cols='12' sm='8'>
                 <v-row>
-                  <v-col cols='12' sm='4' class="items-number">
+                  <v-col class="items-number">
                     <div class="custom-border">
                       <v-icon class="me-2">mdi-bed-outline</v-icon>  {{property.habitaciones}}
                     </div>
                   </v-col>
-                  <v-col cols='12' sm='4' class="items-number">
+                  <v-col class="items-number">
                     <div class="custom-border">
                       <v-icon class="me-2">mdi-toilet</v-icon> {{property.aseos}}
                     </div>
                   </v-col>
-                  <v-col cols='12' sm='4' class="items-number">
+                  <v-col class="items-number">
                     <div class="custom-border">
                       <v-icon class="me-2">mdi-car-outline</v-icon> {{property.aparcamientos}}
+                    </div>
+                  </v-col>
+                  <v-col v-if="property.piscina" class="items-number">
+                    <div class="custom-border pool">
+                      <v-icon class="me-2">mdi-pool</v-icon> Piscina
                     </div>
                   </v-col>
                 </v-row>
@@ -146,6 +151,9 @@
     margin-top: .5rem;
     background-color: #f8f8f8;
     max-width: 80px;
+  }
+  .custom-border.pool {
+    max-width: 110px;
   }
   .items-number {
     flex: 0 0 24.333333%;
