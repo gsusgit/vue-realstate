@@ -11,7 +11,9 @@ export const useProperties = () => {
         return (price) =>
             Number(price).toLocaleString('es-ES', {
                 style: 'currency',
-                currency: 'EUR'
+                currency: 'EUR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
             })
     })
 
