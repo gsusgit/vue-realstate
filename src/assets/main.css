@@ -5,3 +5,26 @@ body {
 .container-3 {
     padding: 0 !important;
 }
+
+@media (min-width: 1280px) {
+    .main-content .v-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    .main-content .v-container.property-listing {
+        max-width: 1280px !important;
+        padding: 16px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+.v-img__img--contain {
+    object-fit: cover !important;
+}
+
+.v-toolbar__content, .v-toolbar__extension {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
