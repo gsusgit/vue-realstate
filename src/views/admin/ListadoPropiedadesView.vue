@@ -126,7 +126,7 @@
                     </v-col>
                     <v-col v-if="property.piscina" class="items-number">
                       <div class="custom-border pool">
-                        <v-icon class="me-2">mdi-pool</v-icon> Piscina
+                        <v-icon class="me-2">mdi-pool</v-icon>
                       </div>
                     </v-col>
                   </v-row>
@@ -174,11 +174,11 @@
     background-color: red !important;
   }
   .custom-border {
-    border: 1px solid #f0f0f0;
+    //border: 1px solid #f0f0f0;
     border-radius: 4px;
     padding: 4px 8px;
     margin-top: .5rem;
-    background-color: #f8f8f8;
+    //background-color: #f8f8f8;
     max-width: 80px;
   }
   .custom-border.pool {
