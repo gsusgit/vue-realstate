@@ -26,8 +26,8 @@ const {
 } = useProperties()
 
 const {
-  zoom,
-  center
+    zoom,
+    center
 } = useLocationMap()
 
 const router = useRouter()
@@ -67,11 +67,11 @@ watch(propiedad, (propiedad) => {
             <div class="my-5 w-100" style="height:300px; width:100%">
               <LMap
                   v-model:zoom="zoom"
-                  :center="center"
+                  :center="propiedad.marker"
                   :use-global-leaflet="false"
               >
                 <LMarker
-                    :lat-lng="center"
+                    :lat-lng="propiedad.marker"
                 />
                 <LTileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
