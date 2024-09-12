@@ -29,7 +29,7 @@
         <v-row>
           <v-col>
             <h1 class="text-h2 font-weight-bold text-center text-white mb-4">Vue Real State</h1>
-            <p class="text-h4 font-weight-light text-center text-white">Transformando el futuro del Hogar Inteligente</p>
+            <p class="text-h4 font-weight-light text-center text-white">Encuentra la casa de tus sueños</p>
           </v-col>
         </v-row>
       </v-sheet>
